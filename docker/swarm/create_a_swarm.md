@@ -1,7 +1,5 @@
 
-Swarm is a clustering solution that is built inside Docker. 
-
-You can create a swarm using the following command:
+You can create a swarm using the `docker swarm init` command:
 ```
 $ docker swarm init
 Swarm initialized: current node (amnyikyszbhslj6u2tk9wfo8r) is now a manager.
@@ -12,6 +10,15 @@ To add a worker to this swarm, run the following command:
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
+**NOTE: If you are using a VM in a hosted cloud environment, you may need to specify your IP address using the `--advertise-addr` flag. 
+```
+$ docker swarm init --advertise-addr 1.2.3.4
+```
+This flag configures the manager node to publish its address as `1.2.3.4`, in this case. The other nodes in the swarm must be able to access the manager at the specified IP address. 
+
+The output of our `docker swarm init` command includes the commands to join new nodes to the swarm. Nodes can join as either workers or managers depending on the value in the `--token` flag. 
+
+In order to add new worker nodes to the swarm you only need to copy the `docker swarm join` command that is output in the original `docker swarm init` output.
 
 You can view all the nodes in your swarm with `docker node ls`:
 ```
