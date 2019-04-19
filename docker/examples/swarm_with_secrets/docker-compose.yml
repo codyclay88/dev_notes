@@ -1,0 +1,22 @@
+version: "3.1" # 3.1 or higher is required to use secrets with swarm
+
+services:
+  psql:
+    image: postgres
+    # we define which secrets this service needs
+    secrets:
+      - psql_user
+      - psql_password
+    environment:
+      # here we are referencing those secrets, any secrets we create get stored in the /run/secrets/<secret_name> file 
+      # within the container. 
+      POSTGRES_PASSWORD_FILE: /run/secrets/psql_password
+      POSTGRES_USER_FILE: /run/secrets/psql_user
+
+# we define our secrets here at the root, just as we would with a service or a network
+secrets:
+  psql_user:
+    file: ./psql_user.txt   # we can map our secrets to a file on disk (not really a best practice)
+  psql_password:
+    file: ./psql_password.txt
+# we could also map our secrets in other ways
