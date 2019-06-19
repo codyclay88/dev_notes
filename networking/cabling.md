@@ -42,6 +42,24 @@ Unshielded Twisted Pair cables have been around for a while, and throughout that
 - `CAT 6a` (10 Gbps @ 100 meters)
 - `CAT 7` (10 Gbps @ 100 meters, shielded, uses a different type of connector, so does not have wide adoption)
 
+### Terminated Twisted Pair
+A piece of Unshielded Twisted Pair that has connectors on both sides of the wire is called `Terminated Twisted Pair`. 
+
+The act of putting the connectors on the ends of a spool of cable is called `crimping`. To do this, you need a `crimper`, which is specifically designed to crimp RJ-45 connectors onto cable. The first step is to cut a portion of the outer 'jacket' off of the cable. After that, you must pull apart the twisted pairs and lay them out in the order that you will be installing them into the RJ-45 connector. The order for TIA-568A is as follows:
+|Position|Color|
+|-|------------|
+|8| Brown|
+|7| Brown striped|
+|6| Orange|
+|5| Blue striped|
+|4| Blue|
+|3| Orange striped|
+|2| Green|
+|1| Green striped |
+Once they individual wires have been placed into this order, you want to squeeze them all together tightly in a broom shape. After that, some crimps will provide a "collar" that you put the wires into that make it easier to put into the connector. Others require you to place them directly into the connector itself. After that, you use the crimper and squeeze the connector with the wires inside as tightly as possible to crimp the wires inside the connector. 
+
+A `straight through cable` (which is the most common) aligns the colors on the end connectors exactly the same, meaning that if I used 568A on one end then I use 568A on the other. The opposite would be a `crossover cable`, where you make one end 568A and the other 568B. This is done to cross the transmit and receive lines on one end to the other. Crossover cables can be useful when you want to connect two computers together so that they can transit and receive with each other. 
+
 ## Fiber Optic Cabling
 A Fiber Optic cable is made up of a Core, which actually carries the light, surrounded by a Cladding, which is what the light is reflecting off of as it bounces off the fiber, and then a Cable Jacket which protects the integrity of the cable.
 

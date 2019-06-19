@@ -62,3 +62,4 @@ Important points about 10BaseT are:
 2. 100 meters between switch and node
 3. Maximum of 1024 nodes per switch
 4. Cat 3 cable or better
+
