@@ -63,7 +63,10 @@ A `straight through cable` (which is the most common) aligns the colors on the e
 ## Fiber Optic Cabling
 A Fiber Optic cable is made up of a Core, which actually carries the light, surrounded by a Cladding, which is what the light is reflecting off of as it bounces off the fiber, and then a Cable Jacket which protects the integrity of the cable.
 
-There are two types of fiber-optic cable; `multimode` and `single-mode`. Multimode cables carry LED signals, and are almost always orange. Single-mode cables are designed to carry laser signals, and is designed to go really long distances, and is almost always yellow. In a fiber-optic network card, they always provide two connectors, and the cables themselves provide two wires. This is called Duplex, which is how the majority of fiber-optic cables work. 
+There are two types of fiber-optic cable; `multimode` and `single-mode`. Multimode cables carry LED signals, and are almost always orange. Single-mode cables are designed to carry laser signals, and is designed to go really long distances, and is almost always yellow. In a fiber-optic network card, they always provide two connectors, and the cables themselves provide two wires (one for transmit and one for receive). This is called Duplex, which is how the majority of fiber-optic cables work. 
+
+Some single-mode cables can actually use two different colors of lazers, one for transmit and one for receive, so that two computers can use the same wire for both transmit and receive. 
+
 
 There are many types of fiber-optic connectors out there but the big ones are:
 - ST - very early type of connector, round, push in and twist
@@ -71,6 +74,7 @@ There are many types of fiber-optic connectors out there but the big ones are:
 - FC - similar to ST, but screws in (old)
 - LC - Two connectors built into one (high-density)
 - MT-RJ - Also two connectors built into one, very small (high-density)
+
 
 ## Fire Ratings
 

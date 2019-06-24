@@ -63,3 +63,49 @@ Important points about 10BaseT are:
 3. Maximum of 1024 nodes per switch
 4. Cat 3 cable or better
 
+## Modern Ethernet
+Not long after 10 Mbps Ethernet, users were demanding faster speeds. It wasn't long before 100 Mbps Ethernet was introduced. At was at this point that Hubs became more and more obselete, because Hubs are, by their nature, limited to 10 Mbps. Also because of this speed boost, we started to see `Full Duplex` networking, where both computers involved in a conversation could converse at the same time, as opposed to `Half Duplex`, where only a computer could only transmit OR receive at one moment in time. In modern ethernet, Full Duplex is the standard.
+
+`100BaseT` was one of the first standards agreed upon in the era of Modern Ethernet. It was operated at 100 Mbps, allowed 1024 nodes, ran for 100 meters, used Cat 5e cabling, only used 2 of the 4 twisted pairs in the cable, and allowed for Full Duplex communications. 
+
+Also around this time we began to see fiber solutions. In particular we saw `100BaseFX`, we used a multi-mode fiber-optic connection that allowed for 2 km of cable between the node and the switch. 
+
+In the 1990s the Ethernet folks came out with `Gigabit Ethernet`. When we talk about gigabit ethernet, we mean 1000Base*something*. 
+
+There are 4 gigabit ethernet standards that we need to be concerned with: 
+1. 1000BaseCX
+    - Is a bit strange because it uses a special type of coaxial cable called `Twinax` and it only allows for 25 meters between the switch and the nodes. 
+2. 1000BaseSX
+    - Uses multimode fiber-optic cable with distances of about 500 meters. 
+3. 1000BaseLX
+    - Uses single-mode fiber-optic cable with distances of about 5 kilimeters. 
+4. 1000BaseT
+    - Uses unshielded twisted pair with Cat 6, with 100 meters distance. 
+
+Even more recently, we have `10 Gigabit Ethernet`. This provides us with some strange standards, that are built to run on a different networking technology called `SONET`. These types of standards are made to work with either traditional Ethernet LANs, or SONET based networks. 
+1. 10GBaseT
+    - Designed to work with CAT 6 (for up to 55 meters) or CAT 6a (this is more encouraged, provides 100 meters).
+2. 10GBaseSR
+    - Multimode fiber cable, variable length depending on external conditions, but can run anywhere from 26 meters to 400 meters. 
+3. 10GBaseLR
+    - Runs on 1310 nanometer single-mode fiber, provides a range of 10 kilometers
+4. 10GBaseER
+    - Runs on 1550 nanometer single-mode fiber, provides a range of 40 kilometers
+
+Each of these last three standards, 10GBaseSR, 10GBaseLR, and 10GBaseER, have a special version called 10GBaseSR/SW, 10GBaseER/EW, and 10GBaaseLR/LW, respectively. These special versions have the exact same specifications as their counterparts, but are intended to work with SONET networks. 
+
+## Connecting Switches
+
+You can expand your broadcast domain by connecting multiple switches together. When interfacing switches together, you will use what are called `patch cables`. There are two different kinds of patch cables that you will see, `straight-through` and `crossover`. In the old days you would connect two switches together using a crossover cable, and you can plug it into any port on either switch. Newer switches provide an `uplink port`, which is a port that is already wired for crossing over the connection. When using an uplink port you can you a straight-through cable. Some switches that have an uplink port have a toggle button that will toggle that uplink port between "uplink mode" and "normal mode". Most new switches however, have `auto-sensing ports`, which automatically recognize that they are connected to another swtich rather than a host. Because of this, in most cases you will use straight-through cables that can be plugged into any port on either switch, and these ports will automatically determine whether they are plugged into a switch or a host. 
+
+## Transceivers
+When working with Fiber connections there is a bit of a problem in terms of physical standards that we are working with. When working with copper we can almost always assume that we are going to be using RJ-45s, but we don't have the same story with fiber connections. However, all the network manufacturers got together and came up with something called `Multisource Agreement (MSA)` transcievers. These devices act like adapters, allowing you to use one switch with just about any fiber connector in existence. The first generation of these transceivers was called a `Gigabit Interface Converter (GBIC)`. Designed more for SC and ST connectors. Later on the `Small form-factor pluggable (SFP)` came into existence, which allowed for smaller types of connectors like LC. Nowadays we also have `SFP+`, which is much more common than SFP today. We also have `Quad small form-factor pluggable (QSFP)` which is designed to work with 40 gigabit ethernet. 
+
+## Scenarios that Arise when Connecting Ethernet
+
+### Loop Issues
+When connecting switches, you cannot create a "loop". You can think of a loop as a physical circle of connections between switches. When doing this, data will start swirling around infinitely and can take down the entire broadcast domain. Most switches nowadays implement the `Spanning Tree Protocol (STP)` which is specifically designed to avoid this scenario. In an STP network, the switches will designate a root switch automatically, where the root switch will turn off one of its ports when it detects a bridging loop. 
+
+We can have some problems when we have a bad actor that is flooding your network with data (usually done for DDOS or man-in-the-middle attack). In these types of situations, we need a special type of switch that has a `Flood guard`. These act similar to STP in that they turn off ports. 
+
+### Mismatched Switch Issues
