@@ -127,3 +127,51 @@ private class DedupeReminderTest {
     } 
 }
 ```
+
+And another!
+```apex
+trigger CalculateLeadingCompetitor on Opportunity (before insert, before update) {
+    for (Opportunity opp : Trigger.new) {
+        List<Decimal> compPrices = new List<Decimal>();
+        List<String> compNames = new List<String>();
+        
+        compPrices.add(opp.Competitor_1_Price__c);
+        compPrices.add(opp.Competitor_2_Price__c);
+        compPrices.add(opp.Competitor_3_Price__c);
+        
+        compNames.add(opp.Competitor_1__c);
+        compNames.add(opp.Competitor_2__c);
+        compNames.add(opp.Competitor_3__c);
+        
+        Integer bestIndex = 0;
+        Decimal bestPrice = compPrices.get(0); 
+        for(Integer i = 1; i < compPrices.size(); i++) {
+            Decimal price = compPrices.get(i);
+            if(price != null && price < bestPrice) {
+                bestIndex = i;
+            }
+        }
+        
+        opp.Leading_Competitor__c = compNames.get(bestIndex);
+    }
+}
+```
+Test class:
+```apex
+@isTest
+private class CalculateLeadingCompetitorTest {
+    @isTest static void test() {
+        Opportunity opp = new Opportunity();
+        opp.Competitor_1__c = "Amazon";
+        opp.Competitor_1_Price__c = 10000;
+        opp.Competitor_2__c = "Google";
+        opp.Competitor_2_Price__c = 5000;
+        opp.Competitor_3__c = "Microsoft";
+        opp.Competitor_3_Price__c = 20000;
+        insert opp;
+
+        opp.Competitor_3_Price__c = 15000;
+        update opp;
+    }
+}
+```

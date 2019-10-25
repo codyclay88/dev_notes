@@ -45,3 +45,25 @@ trigger AppleWatch on Opportunity (after insert) {
 - `Task t = new Task();` creates a new Task object
 - `insert t;` inserts the new task that we created into the Task table. 
 
+
+```apex
+trigger WarrantySummary on Case (before insert) {
+    for (Case myCase : Trigger.new) {
+        Date purchaseDate          = myCase.Product_Purchase_Date__C;
+        DateTime createdDate       = DateTime.now();
+        Integer warrantyDays       = myCase.Product_Total_Warranty_Days__c;
+        Decimal warrantyPercentage = (100 * (purchaseDate.daysBetween(Date.today()) / 
+                                        myCase.Product_Total_Warranty_Days__c)).setScale(2);
+        Bool hasExtendedWarranty   = myCase.Has_Extended_Warranty__c;
+
+        myCase.Warranty_Summary_c 
+            = 'Product purchased on ' + purchaseDate.format() 
+            + ' and case created on ' + createdDate.format()  + '\n'
+            + 'Warranty is for ' + warrantyDays
+            + ' days and is ' + warrantyPercentage + '% through its warranty period.\n'
+            + 'Extended warranty: ' + hasExtendedWarranty + '\n'
+            + 'Have a nice day!';
+
+    }
+}
+```
