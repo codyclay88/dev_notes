@@ -29,5 +29,7 @@ This will add the network to `some_container`, meaning that if `some_container` 
 
 You can similarly disconnect with the `docker network disconnect` command.
 
+Two containers within the same network can access any ports that are exposed by the containers, no explicit `-p` flags are needed for intra-network communications. 
+
 
 

@@ -18,7 +18,16 @@ This flag configures the manager node to publish its address as `1.2.3.4`, in th
 
 The output of our `docker swarm init` command includes the commands to join new nodes to the swarm. Nodes can join as either workers or managers depending on the value in the `--token` flag. 
 
-In order to add new worker nodes to the swarm you only need to copy the `docker swarm join` command that is output in the original `docker swarm init` output.
+In order to add new nodes to the swarm you only need to copy the `docker swarm join` command that is output in the original `docker swarm init` output.
+
+If you do not have access to this output, you can retreive the token using the following command:
+```
+$ docker swarm join-token worker
+
+// OR for adding managers
+
+$ docker swarm join-token manager
+```
 
 You can view all the nodes in your swarm with `docker node ls`:
 ```
