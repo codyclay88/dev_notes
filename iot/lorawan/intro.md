@@ -1,0 +1,2 @@
+
+LoRaWAN is a new, private, and spread-spectrum modulation technique that allows sending data at extremely low data-rates to extremely long ranges. The low data-rate (down to a few bytes per second) and LoRaWAN modu

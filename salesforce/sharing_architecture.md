@@ -1,0 +1,1 @@
+The Salesforce data sharing model is an essential element in your organizations ability to provide secure application data access. Therefore, its crucial to architect your sharing model correctly to meet your current 
